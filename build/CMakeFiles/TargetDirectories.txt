@@ -1,0 +1,3 @@
+/study/code/build/CMakeFiles/hello.dir
+/study/code/build/CMakeFiles/edit_cache.dir
+/study/code/build/CMakeFiles/rebuild_cache.dir

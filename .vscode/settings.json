@@ -1,0 +1,9 @@
+{
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "clangd.path": "/study/clang/clangd",
+  "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  
+}
