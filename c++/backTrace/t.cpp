@@ -28,14 +28,15 @@ public:
 };
 
 int main() {
-  Solution sol;
-  string s = "abc";
-  vector<string> ans = sol.allSubstrings(s);
+  auto dfs = [&](auto &&self, int &x) -> void {
+    if (x >= 100)
+      return;
 
-  cout << "所有子串: \n";
-  for (auto &sub : ans) {
-    cout << sub << endl;
-  }
+    self(self, x); // 调用 operator()
+    x += 1;
+    cout << x << endl;
+    
+  };
 
-  return 0;
+  
 }
