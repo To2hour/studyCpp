@@ -164,3 +164,67 @@ public:
     return dp[n];
   }
 };
+// 01背包开始。有个好文章
+// https://juejin.cn/post/7531888188774334499
+//拆成等和子集
+class Solution7 {
+public:
+  bool canPartition(vector<int> &nums) {
+    int amount = 0;
+    for (int num : nums) {
+      amount += num;
+    }
+    if (amount & 1) {
+      return false;
+    }
+    int target = amount / 2;
+    vector<int> dp(target + 1, 0);
+    for (int i = 0; i < nums.size(); i++) {
+      for (int j = target; j >= nums[i]; j--) {
+        dp[j] = max(dp[j], dp[j - nums[i]] + nums[i]);
+      }
+    }
+    return dp[target - 1] == target;
+  }
+};
+// 1049. 最后一块石头的重量 II
+class Solution8 {
+public:
+  int lastStoneWeightII(vector<int> &stones) {
+    int amount = 0;
+    for (int num : stones) {
+      amount += num;
+    }
+    if (amount & 1) {
+      return false;
+    }
+    int target = amount / 2;
+    vector<int> dp(target + 1, 0);
+    for (int i = 0; i < stones.size(); i++) {
+      for (int j = target; j >= stones[i]; j--) {
+        dp[j] = max(dp[j], dp[j - stones[i]] + stones[i]);
+      }
+    }
+    return amount - 2 * dp[target];
+  }
+};
+// 01和
+// 没活的回溯写法
+class Solution9 {
+public:
+  int findTargetSumWays(vector<int> &nums, int target) {
+    int res = 0;
+    auto sum = [&](auto &&sum, int len, int amout) -> void {
+      if (len == nums.size()) {
+        if (amout == target) {
+          res += 1;
+        }
+        return;
+      }
+      sum(sum, len + 1, amout - nums[len]);
+      sum(sum, len + 1, amout + nums[len]);
+    };
+    sum(sum, 0, 0);
+    return res;
+  }
+};
